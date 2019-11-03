@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './components/Navbar';
+import Booklist from './components/Booklist';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import {ThemeContext} from './contexts/themeContext';
+
+class App extends React.Component {
+
+  render() {
+    return (
+      <ThemeContext.Consumer>
+          {(context) => {
+            const {isLight , dark , light , changeTheme} = context;
+            const theme = isLight ? light : dark;
+            return (
+              <div style={theme} className="App">
+                <Navbar/>
+                <div>
+                    <Booklist/>
+                </div>
+                <br/>
+                <button onClick={changeTheme}>Toggle theme</button>
+              </div>
+            )
+          }}
+      </ThemeContext.Consumer>
+        
+    );
+  }
 }
 
 export default App;
