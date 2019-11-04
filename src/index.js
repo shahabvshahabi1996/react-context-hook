@@ -5,11 +5,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ThemeContextProvider from './contexts/themeContext';
 import AuthContextProvider from './contexts/authContext';
+import BookContextProvider from './contexts/booksContext';
 
 ReactDOM.render(
 <ThemeContextProvider>
     <AuthContextProvider>
-        <App/>
+        <BookContextProvider>
+            <App/>
+        </BookContextProvider>
     </AuthContextProvider>
 </ThemeContextProvider>, document.getElementById('root'));
 
